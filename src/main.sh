@@ -63,4 +63,4 @@ if [ -n "${INPUT_ENV_FILE}" ];then
 fi
 
 echo -e "\u001b[36mDeploying Stack: \u001b[37;1m${INPUT_NAME}"
-docker stack deploy --detach=false --with-registry-auth -c "${INPUT_FILE}" "${INPUT_NAME}" 
+docker stack deploy --with-registry-auth -c "${INPUT_FILE}" "${INPUT_NAME}" 
