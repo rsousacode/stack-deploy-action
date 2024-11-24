@@ -6,6 +6,12 @@ branding:
   color: "green"
 
 inputs:
+  repo:
+    description: "Repository"
+  repo_user:
+    description: "Registry user"
+  repo_pass:
+    description: "Registry password"
   host:
     description: "Docker Host"
     required: true

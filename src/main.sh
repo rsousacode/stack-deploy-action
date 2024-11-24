@@ -46,6 +46,8 @@ trap cleanup_trap EXIT HUP INT QUIT PIPE TERM
 echo -e "\u001b[36mVerifying Docker and Setting Context."
 ssh -p "${INPUT_PORT}" "${INPUT_USER}@${INPUT_HOST}" "docker info" > /dev/null
 
+docker login "${INPUT_REPO}" -u "${INPUT_REPO_USER}" -p "${INPUT_REPO_PASS}"
+
 docker context create remote --docker "host=ssh://${INPUT_USER}@${INPUT_HOST}:${INPUT_PORT}"
 docker context ls
 docker context use remote
@@ -61,4 +63,4 @@ if [ -n "${INPUT_ENV_FILE}" ];then
 fi
 
 echo -e "\u001b[36mDeploying Stack: \u001b[37;1m${INPUT_NAME}"
-docker stack deploy -c "${INPUT_FILE}" "${INPUT_NAME}"
+docker stack deploy -c "${INPUT_FILE}" "${INPUT_NAME}" --with-registry-auth --detach=false
