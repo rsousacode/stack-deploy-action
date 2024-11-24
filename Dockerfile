@@ -1,4 +1,4 @@
-FROM docker:27-dind-rootless
+FROM docker:24-dind
 
 RUN apk add --update --no-cache bash sshpass
 
